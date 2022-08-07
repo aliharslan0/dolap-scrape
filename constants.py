@@ -2,20 +2,15 @@
 from enum import Enum
 
 
-class BodySize(Enum):
-    pass
-
-
 class Status(Enum):
-    pass
+    LITTLE_USED = 'Az Kullanılmış'
+    NEW = 'Yeni'
+    NEW_AND_LABELLED = 'Yeni ve Etiketli'
 
 
 class CargoPayer(Enum):
-    pass
-
-
-class Color(Enum):
-    pass
+    BUYER = 'Alıcı Öder'
+    SELLER = 'Satıcı Öder'
 
 
 PURCHASE_PRICE = 'div.price-detail:nth-child(1) > span:nth-child(1)'

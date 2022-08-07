@@ -47,11 +47,11 @@ class Product:
 
     @property
     def status(self):
-        return self.__parser.css_first(constants.STATUS).text()
+        return constants.Status(self.__parser.css_first(constants.STATUS).text())
 
     @property
     def cargo_payer(self):
-        return self.__parser.css_first(constants.CARGO_PAYER).text()
+        return constants.CargoPayer(self.__parser.css_first(constants.CARGO_PAYER).text())
 
     @property
     def like_count(self):
