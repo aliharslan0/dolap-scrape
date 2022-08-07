@@ -29,7 +29,6 @@ class Price:
 class Product:
     def __init__(self, url: str):
         self.__url = url
-        self.__seller: profile.Profile | None = None
 
     @cached_property
     def __parser(self):
@@ -81,10 +80,7 @@ class Product:
 
     @cached_property
     def seller(self):
-        if not self.__seller:
-            self.__seller = profile.Profile(self.__parser.css_first(constants.SELLER_URL).attributes['href'])
-            return self.__seller
-        return self.__seller
+        return profile.Profile(self.__parser.css_first(constants.SELLER_URL).attributes['href'])
 
     @cached_property
     def status(self):
