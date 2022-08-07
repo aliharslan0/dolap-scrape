@@ -51,7 +51,7 @@ class Product:
 
     @property
     def category(self):
-        return self.__parser.css_first('.breadcrumb > li:nth-last-child(-n+2)').text()
+        return self.__parser.css_first(constants.CATEGORY).text()
 
     @property
     def color(self):

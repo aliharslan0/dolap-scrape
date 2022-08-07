@@ -16,7 +16,7 @@ class CargoPayer(Enum):
 BRAND = '.title-holder > h1:nth-child(1)'
 BODY_SIZE = '.title-holder > h1:nth-child(1)'
 CARGO_PAYER = 'span.subtitle:nth-child(3)'
-CATEGORY = '.breadcrumb > li'
+CATEGORY = '.breadcrumb > li:nth-last-child(-n+2)'
 COLOR = '.color-holder > span:nth-child(2)'
 DESCRIPTION = '.remarks-block > p:nth-child(1)'
 LIKE_COUNT = '.likes-block > a:nth-child(1) > span:nth-child(2)'
