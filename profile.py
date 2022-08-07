@@ -7,7 +7,7 @@ import constants
 import product
 
 
-@dataclass(frozen=True)
+@dataclass(slots=True)
 class Profile:
     url: str = field(repr=False)
     __parser: LexborHTMLParser = field(init=False, repr=False)
@@ -36,5 +36,13 @@ class Profile:
     def sold(self):
         return list[product.Product]
 
+    def __reinit(self):
+        self.__parser = LexborHTMLParser(get(self.url).content.decode())
+
     def __post_init__(self):
-        object.__setattr__(self, '_Profile__parser', LexborHTMLParser(get(self.url).content.decode()))
+        self.__reinit()
+
+    def __setattr__(self, key, value):
+        object.__setattr__(self, key, value)
+        if hasattr(self, key) and key == 'url':
+            self.__reinit()

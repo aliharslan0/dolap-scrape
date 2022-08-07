@@ -1,13 +1,13 @@
-import profile
 from dataclasses import dataclass, field
 
 from requests import get
 from selectolax.lexbor import LexborHTMLParser
 
 import constants
+import profile
 
 
-@dataclass(frozen=True)
+@dataclass(slots=True)
 class Product:
     @dataclass
     class __Price:
@@ -73,8 +73,7 @@ class Product:
     @property
     def seller(self):
         if not self.__seller:
-            p = profile.Profile(self.__parser.css_first(constants.SELLER_URL).attributes['href'])
-            object.__setattr__(self, '_Product__seller', p)
+            self.__seller = profile.Profile(self.__parser.css_first(constants.SELLER_URL).attributes['href'])
             return self.__seller
         return self.__seller
 
@@ -82,5 +81,13 @@ class Product:
     def status(self):
         return constants.Status(self.__parser.css_first(constants.STATUS).text())
 
+    def __reinit(self):
+        self.__parser = LexborHTMLParser(get(self.url).content.decode())
+
     def __post_init__(self):
-        object.__setattr__(self, '_Product__parser', LexborHTMLParser(get(self.url).content.decode()))
+        self.__reinit()
+
+    def __setattr__(self, key, value):
+        object.__setattr__(self, key, value)
+        if hasattr(self, key) and key == 'url':
+            self.__reinit()

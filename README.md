@@ -7,28 +7,29 @@ Scraper for dolap.com
 <details> 
 
 - Profile
-  - Name
-  - Follower Count
-  - Followed Count
-  - Products
-  - Sold Products
-  - Favorite Products
-  
+    - Name
+    - Follower Count
+    - Followed Count
+    - Products
+    - Sold Products
+    - Favorite Products
+
 - Product
-  - Brand
-  - Body Size
-  - Cargo Payer
-  - Category
-  - Color
-  - Description
-  - Like Count
-  - Purchase Price
-  - Sale Price
-  - Status
-  
+    - Brand
+    - Body Size
+    - Cargo Payer
+    - Category
+    - Color
+    - Description
+    - Like Count
+    - Purchase Price
+    - Sale Price
+    - Status
+
 </details>
 
 ## 📕 Example
+
 ```py
 from icecream import ic
 
@@ -54,7 +55,9 @@ ic(s.products)
 ic(s.sold)
 ic(s.favorites)
 ```
+
 Output
+
 ```
 ic| p.brand: 'Diğer'
 ic| p.body_size: 'XL Beden'
