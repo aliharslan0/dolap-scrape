@@ -1,10 +1,10 @@
+import profile
 from dataclasses import dataclass, field
 
 from requests import get
 from selectolax.lexbor import LexborHTMLParser
 
 import constants
-import profile
 
 
 @dataclass
@@ -46,12 +46,16 @@ class Product:
         return self.__parser.css_first(constants.BODY_SIZE).text().partition('-')[2].strip()
 
     @property
-    def status(self):
-        return constants.Status(self.__parser.css_first(constants.STATUS).text())
-
-    @property
     def cargo_payer(self):
         return constants.CargoPayer(self.__parser.css_first(constants.CARGO_PAYER).text())
+
+    @property
+    def color(self):
+        return self.__parser.css_first(constants.COLOR).text()
+
+    @property
+    def description(self):
+        return self.__parser.css_first(constants.DESCRIPTION).text()
 
     @property
     def like_count(self):
@@ -66,12 +70,8 @@ class Product:
         return profile.Profile(self.__parser.css_first(constants.SELLER_URL).attributes['href'])
 
     @property
-    def description(self):
-        return self.__parser.css_first(constants.DESCRIPTION).text()
-
-    @property
-    def color(self):
-        return self.__parser.css_first(constants.COLOR).text()
+    def status(self):
+        return constants.Status(self.__parser.css_first(constants.STATUS).text())
 
     def __post_init__(self):
         self.__parser = LexborHTMLParser(get(self.url).content.decode())
