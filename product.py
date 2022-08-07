@@ -50,6 +50,10 @@ class Product:
         return constants.CargoPayer(self.__parser.css_first(constants.CARGO_PAYER).text())
 
     @property
+    def category(self):
+        return self.__parser.css_first('.breadcrumb > li:nth-last-child(-n+2)').text()
+
+    @property
     def color(self):
         return self.__parser.css_first(constants.COLOR).text()
 
