@@ -62,12 +62,10 @@ class Profile:
             resp = get(url, params={'sayfa': n})
             parser = LexborHTMLParser(resp.content.decode())
 
-            for p in parser.css(constants.PRODUCTS):
-                yield product.Product(p.attributes['href'])
-
             if parser.css_first(constants.NOT_FOUND):
                 break
 
-            n += 1
+            for p in parser.css(constants.PRODUCTS):
+                yield product.Product(p.attributes['href'])
 
-        return n
+            n += 1
