@@ -81,13 +81,10 @@ class Product:
     def status(self):
         return constants.Status(self.__parser.css_first(constants.STATUS).text())
 
-    def __reinit(self):
+    def __manuel_init(self):
         self.__parser = LexborHTMLParser(get(self.url).content.decode())
-
-    def __post_init__(self):
-        self.__reinit()
 
     def __setattr__(self, key, value):
         object.__setattr__(self, key, value)
-        if hasattr(self, key) and key == 'url':
-            self.__reinit()
+        if key == 'url':
+            self.__manuel_init()

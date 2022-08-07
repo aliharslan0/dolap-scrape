@@ -47,13 +47,12 @@ ic(p.price.purchase_price)
 ic(p.price.sale_price)
 ic(p.status)
 
-s = p.seller
-ic(s.name)
-ic(s.follower_count)
-ic(s.followed_count)
-ic(s.products)
-ic(s.sold)
-ic(s.favorites)
+ic(p.seller.name)
+ic(p.seller.follower_count)
+ic(p.seller.followed_count)
+ic(p.seller.products)
+ic(p.seller.sold)
+ic(p.seller.favorites)
 ```
 
 Output
@@ -69,10 +68,10 @@ ic| p.like_count: 0
 ic| p.price.purchase_price: 189.0
 ic| p.price.sale_price: 89.0
 ic| p.status: <Status.NEW_AND_LABELLED: 'Yeni ve Etiketli'>
-ic| s.name: '@snazzyofficial'
-ic| s.follower_count: 3119
-ic| s.followed_count: 0
-ic| s.products: list[product.Product]
-ic| s.sold: list[product.Product]
-ic| s.favorites: list[product.Product]
+ic| p.seller.name: '@snazzyofficial'
+ic| p.seller.follower_count: 3122
+ic| p.seller.followed_count: 0
+ic| p.seller.products: list[product.Product]
+ic| p.seller.sold: list[product.Product]
+ic| p.seller.favorites: list[product.Product]
 ```
