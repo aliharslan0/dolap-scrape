@@ -7,10 +7,10 @@ import constants
 import product
 
 
-@dataclass
+@dataclass(frozen=True)
 class Profile:
     url: str = field(repr=False)
-    __parser: LexborHTMLParser | None = field(init=False, repr=False)
+    __parser: LexborHTMLParser = field(init=False, repr=False)
 
     @property
     def name(self):
@@ -37,4 +37,4 @@ class Profile:
         return list[product.Product]
 
     def __post_init__(self):
-        self.__parser = LexborHTMLParser(get(self.url).content.decode())
+        object.__setattr__(self, '_Profile__parser', LexborHTMLParser(get(self.url).content.decode()))

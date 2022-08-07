@@ -7,7 +7,7 @@ from selectolax.lexbor import LexborHTMLParser
 import constants
 
 
-@dataclass
+@dataclass(frozen=True)
 class Product:
     @dataclass
     class __Price:
@@ -35,6 +35,7 @@ class Product:
                 self.__sale_price = float(normalize(self.__parser.css_first(constants.PURCHASE_PRICE).text()))
 
     url: str = field(repr=False)
+    __seller: profile.Profile | None = field(init=False, repr=False, default=None)
     __parser: LexborHTMLParser | None = field(init=False, repr=False)
 
     @property
@@ -71,11 +72,15 @@ class Product:
 
     @property
     def seller(self):
-        return profile.Profile(self.__parser.css_first(constants.SELLER_URL).attributes['href'])
+        if not self.__seller:
+            p = profile.Profile(self.__parser.css_first(constants.SELLER_URL).attributes['href'])
+            object.__setattr__(self, '_Product__seller', p)
+            return self.__seller
+        return self.__seller
 
     @property
     def status(self):
         return constants.Status(self.__parser.css_first(constants.STATUS).text())
 
     def __post_init__(self):
-        self.__parser = LexborHTMLParser(get(self.url).content.decode())
+        object.__setattr__(self, '_Product__parser', LexborHTMLParser(get(self.url).content.decode()))
