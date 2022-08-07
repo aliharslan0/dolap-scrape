@@ -1,6 +1,6 @@
 # Dolap Scrape
 
-Scraper for dolap.com
+Scraper for dolap.com.
 
 ## ⚙ Features
 
@@ -30,7 +30,7 @@ Scraper for dolap.com
 
 ## 📕 Example
 
-```py
+```python
 from icecream import ic
 
 from product import Product
