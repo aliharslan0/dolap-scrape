@@ -67,6 +67,10 @@ class Product:
         return int(self.__parser.css_first(constants.LIKE_COUNT).text())
 
     @cached_property
+    def images(self):
+        return [i.attributes['src'] for i in self.__parser.css(constants.IMAGES)]
+
+    @cached_property
     def price(self):
         purchase = self.__parser.css_first(constants.PURCHASE_PRICE)
         sale = self.__parser.css_first(constants.SALE_PRICE)
