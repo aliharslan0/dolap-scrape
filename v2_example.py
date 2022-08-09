@@ -1,11 +1,3 @@
-# Dolap Scrape
-
-Scraper for dolap.com.
-
-## 📕 Example
-
-### V2
-```python
 from dolap_scrape.v2.api import Dolap
 
 member = Dolap.member_from_url('https://dolap.com/profil/...')
@@ -41,34 +33,3 @@ product.updated_date
 product.created_date
 product.colours
 product.images
-
-```
-
-### V1
-```python
-from dolap_scrape.v1.product import Product
-
-p = Product('https://dolap.com/urun/...')
-p.body_size
-p.brand
-p.cargo_payer
-p.category
-p.color
-p.description
-p.like_count
-p.images
-p.price.purchase
-p.price.sale
-p.status
-
-p.seller.about
-p.seller.favorite_count
-p.seller.favorites
-p.seller.followed_count
-p.seller.follower_count
-p.seller.name
-p.seller.product_count
-p.seller.products
-p.seller.sold_count
-
-```

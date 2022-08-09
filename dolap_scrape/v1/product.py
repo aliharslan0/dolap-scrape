@@ -4,8 +4,7 @@ from functools import cached_property
 from requests import get
 from selectolax.lexbor import LexborHTMLParser
 
-from src import constants
-from src import profile
+from dolap_scrape.v1 import constants, profile
 
 
 @dataclass(frozen=True, slots=True)
@@ -68,7 +67,7 @@ class Product:
 
     @cached_property
     def images(self):
-        return [i.attributes['src'] for i in self.__parser.css(constants.IMAGES)]
+        return [i.attributes['dolap_scrape'] for i in self.__parser.css(constants.IMAGES)]
 
     @cached_property
     def price(self):

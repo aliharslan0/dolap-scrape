@@ -3,8 +3,7 @@ from functools import cached_property
 from requests import get
 from selectolax.lexbor import LexborHTMLParser
 
-from src import constants
-from src import product
+from dolap_scrape.v1 import constants, product
 
 
 class Profile:
