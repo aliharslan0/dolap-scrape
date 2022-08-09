@@ -67,7 +67,7 @@ class Product:
 
     @cached_property
     def images(self):
-        return [i.attributes['dolap_scrape'] for i in self.__parser.css(constants.IMAGES)]
+        return [i.attributes['src'] for i in self.__parser.css(constants.IMAGES)]
 
     @cached_property
     def price(self):
